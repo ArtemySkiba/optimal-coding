@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace Mod
 {
@@ -9,6 +10,7 @@ namespace Mod
         public List<Node> nodes = new List<Node>();
         public Node Root { get; set; }
         public Dictionary<string, int> Frequencies = new Dictionary<string, int>();
+        public Dictionary<string, double> d = new Dictionary<string, double>();
 
         public void Build(List<string> source)
         {
@@ -22,6 +24,15 @@ namespace Mod
                 Frequencies[source[i]]++;
             }
 
+            for (int i = 0; i < source.Count; i++)
+            {
+                double a = Frequencies[source[i]] / (double)(source.Count);
+                if (!d.ContainsKey(source[i]))
+                {
+                    d.Add(source[i], a);
+                }
+            }
+            
             foreach (KeyValuePair<string, int> value in Frequencies)
             {
                 nodes.Add(new Node() { Value = value.Key, Frequency = value.Value });
@@ -30,7 +41,7 @@ namespace Mod
             while (nodes.Count > 1)
             {
                 List<Node> orderedNodes = nodes.OrderBy(node => node.Frequency).ToList<Node>();
-
+                
                 if (orderedNodes.Count >= 2)
                 {
                     // Take first two items
@@ -51,11 +62,13 @@ namespace Mod
                 }
 
                 Root = nodes.FirstOrDefault();
-
+                
             }
 
         }
 
+        double b = 0;
+        double c = 0;
         public List<string> Encode(List<string> dictionary)
         {
             var result = new List<string>();
@@ -63,8 +76,12 @@ namespace Mod
             {
                 List<bool> encodedSymbol = Root.Traverse(dictionary[i], new List<bool>());
                 result.Add(StringManipulator.BitToString(new BitArray(encodedSymbol.ToArray())));
-            }
 
+
+                b += result[i].ToString().Length * d[dictionary[i]];
+                c += d[dictionary[i]];
+            }
+            MessageBox.Show("Средняя длинна кодового слова: " + b.ToString());
            
 
             return result;

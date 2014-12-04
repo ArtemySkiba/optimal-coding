@@ -45,6 +45,7 @@ namespace Mod
                 encodedText.Add(stringCode);
                 encodedBuilder.Append(stringCode);
             }
+            
             FileManipulator.WriteFile(encodedBuilder.ToString(), "encoded.txt");
 
             if (radioButton1.Checked)
