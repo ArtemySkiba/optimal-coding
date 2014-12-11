@@ -47,6 +47,13 @@ namespace Mod
             }
             
             FileManipulator.WriteFile(encodedBuilder.ToString(), "encoded.txt");
+            
+            int encodedLength = encodedBuilder.ToString().Length;
+
+            int sourceLength = sourceText.ToString().Length;
+
+            float compression = (float)sourceLength / encodedLength;
+            MessageBox.Show("Длина исходного текста=" + sourceLength.ToString() + "\nДлина закодированного текста=" + encodedLength.ToString() + "\nКоэфициент сжатия=" + compression.ToString());
 
             if (radioButton1.Checked)
             {
