@@ -7,6 +7,7 @@ namespace Mod
 {
     public static  class SimpleCode
     {
+        
         public static List<string> BuildCode(List<string> dictionary)
         {
             var encodedDictionary = new List<string>();
@@ -21,7 +22,10 @@ namespace Mod
                     encodedDictionary.Add(stringCode);
                 }
             }
-            MessageBox.Show("Средняя длинна кодового слова: " + codeLength.ToString());
+            //MessageBox.Show("Средняя длинна кодового слова: " + codeLength.ToString());
+            Data.AverageCodeWordLenght = codeLength.ToString();
+ 
+            
             return encodedDictionary;
         }
     }

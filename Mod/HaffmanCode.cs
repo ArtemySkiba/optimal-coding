@@ -14,5 +14,6 @@ namespace Mod
             tree.Build(splittedText);
             return tree.Encode(dictionary);
         } 
+
     }
 }

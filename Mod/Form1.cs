@@ -16,6 +16,8 @@ namespace Mod
             InitializeComponent();
         }
 
+ 
+
         private void button1_Click(object sender, EventArgs e)
         {
             var dictionary = new List<string>();
@@ -24,7 +26,11 @@ namespace Mod
             var encodedText = new List<string>();
             var encodedBuilder = new StringBuilder();
             string decodedText = string.Empty;
-            var sourceText = FileManipulator.ReadFile(openFileDialog1);
+            var sourceText = FileManipulator.ReadFile();
+            if(sourceText == null)
+            {
+                return;
+            }
             int blockLength = (int) numericUpDown1.Value;
             int step = radioButton1.Checked ? blockLength : 1;
 
@@ -53,8 +59,11 @@ namespace Mod
             int sourceLength = sourceText.ToString().Length;
 
             float compression = (float)sourceLength / encodedLength;
-            MessageBox.Show("Длина исходного текста=" + sourceLength.ToString() + "\nДлина закодированного текста=" + encodedLength.ToString() + "\nКоэфициент сжатия=" + compression.ToString());
-
+            //MessageBox.Show("Длина исходного текста=" + sourceLength.ToString() + "\nДлина закодированного текста=" + encodedLength.ToString() + "\nКоэфициент сжатия=" + compression.ToString());
+            textBoxCodeWordLenght.Text = Data.AverageCodeWordLenght;
+            textBoxSourceText.Text = sourceLength.ToString();
+            textBoxDecodedText.Text = encodedLength.ToString();
+            textBoxCompresureFactor.Text = compression.ToString();
             if (radioButton1.Checked)
             {
                 for (int k = 0; k < encodedText.Count; k++)
@@ -79,5 +88,18 @@ namespace Mod
                 FileManipulator.WriteFile(decodedText, "decodedLGramm.txt");
             }
         }
+
+        private void buttonChooseFile_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                Data.FileName = openFileDialog1.FileName;
+                textBoxFileName.Text = openFileDialog1.FileName;
+            }
+        }
+
+    
+        
+
     }
 }
