@@ -2,6 +2,7 @@
 *.userprefs
 *.DotSettings.user
 *.suo
+.vs/
 
 [Dd]ebug/
 [Rr]elease/
@@ -63,3 +64,11 @@ Desktop.ini
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
+LibiadaWeb/JSLintNet.json
+
+# Connection strings and email config files.
+
+Web.Release.config
+ConnectionStrings.config
+
+.vs

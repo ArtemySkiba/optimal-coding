@@ -89,7 +89,7 @@
             // 
             this.numericUpDown1.Location = new System.Drawing.Point(19, 28);
             this.numericUpDown1.Minimum = new decimal(new int[] {
-            5,
+            1,
             0,
             0,
             0});
@@ -97,7 +97,7 @@
             this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
             this.numericUpDown1.TabIndex = 5;
             this.numericUpDown1.Value = new decimal(new int[] {
-            5,
+            1,
             0,
             0,
             0});
