@@ -16,24 +16,26 @@ namespace Mod
             sw1.Close();
         }
 
-        public static string ReadFile(OpenFileDialog openFileDialog1)
+        public static string ReadFile()
         {
             StreamReader reader;
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            if (Data.FileName != null)
             {
-                reader = new StreamReader(openFileDialog1.FileName);
+                reader = new StreamReader(Data.FileName);
+                string sourceText = string.Empty;
+                String buffer = string.Empty;
+                while ((buffer = reader.ReadLine()) != null)
+                {
+                    sourceText += buffer;
+                }
+                return sourceText;
             }
             else
             {
-                throw new Exception("Файл не выбран.");
+                MessageBox.Show("Выберите файл!");
+                return null;
             }
-            string sourceText = string.Empty;
-            String buffer = string.Empty;
-            while ((buffer = reader.ReadLine()) != null)
-            {
-                sourceText += buffer;
-            }
-            return sourceText;
+            
         }
     }
 }

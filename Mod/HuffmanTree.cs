@@ -12,6 +12,7 @@ namespace Mod
         public Dictionary<string, int> Frequencies = new Dictionary<string, int>();
         public Dictionary<string, double> d = new Dictionary<string, double>();
 
+
         public void Build(List<string> source)
         {
             for (int i = 0; i < source.Count; i++)
@@ -81,7 +82,8 @@ namespace Mod
                 b += result[i].ToString().Length * d[dictionary[i]];
                 c += d[dictionary[i]];
             }
-            MessageBox.Show("Средняя длинна кодового слова: " + b.ToString());
+            //MessageBox.Show("Средняя длинна кодового слова: " + b.ToString());
+            Data.AverageCodeWordLenght = b.ToString();
            
 
             return result;
